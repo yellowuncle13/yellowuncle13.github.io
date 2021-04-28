@@ -40,7 +40,7 @@ https://templatemo.com/tm-561-purple-buzz
                 <div class="flex-fill mx-xl-5 mb-2">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-xl-5 text-center text-dark">
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="chapter/0.html">開始閱讀</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="chapter/chapter_0.html">開始閱讀</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="index.html">pending</a>
@@ -49,7 +49,7 @@ https://templatemo.com/tm-561-purple-buzz
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="index.html">最新消息</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="comments.html">評論區</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="index.html">評論區</a>
                         </li>
                     </ul>
                 </div>
@@ -60,20 +60,26 @@ https://templatemo.com/tm-561-purple-buzz
     <!-- Close Header -->
 
 
-    <!-- Start pricing -->
-    <div class="container-lg py-5">
-        <div>
-            <div class="main_topic">拔刀</div>
-            <div class="second_topic">作者：小黃叔</div>
-            <div class="content">
-                <p></p>
-                你的劍有多長，這世上的公理就有多長。
-                <p></p>
-                那一天，師傅是這樣和我說的。
-            </div>
-        </div>
-    </div>
-    
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        
+        var disqus_config = function () {
+        this.page.url = "https://yellowuncle13.github.io/comments.html";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "comments.html"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-yellowuncle13-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
     <!-- Bootstrap -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <!-- Templatemo -->
