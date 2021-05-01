@@ -179,7 +179,7 @@ p, a {font-weight: 400;}
 }
 .pricing-table,
 .pricing-horizontal {
-  border-radius: 150px !important;
+  border-radius: 10px !important;
 }
 /* Contact */
 #floatingtextarea {
