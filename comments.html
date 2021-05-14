@@ -48,8 +48,14 @@
     </nav>
     <!-- Close Header -->
 
-    <!-- Comment Section-->
+
+    <!-- Start Comment-->
     <div class="container py-5 text-center">
+        <span class="badge bg-primary rounded-pill"><div id="cmtCnt">0</div></span><p></p>
+        <div id="allComments"></div>
+    </div>
+    
+    <div class="container text-center">
         <!-- Button trigger modal -->
         <button type="button" class="btn-lg btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             我要留言
@@ -66,7 +72,7 @@
                     <div class="modal-body">
                         <form id="myForm">
                             <div class="mb-3">
-                            <input type="text" class="form-control" id="add-name" placeholder="道號" maxlength="10">
+                            <input type="text" class="form-control" id="add-name" placeholder="道號" maxlength="15">
                             </div>
                             <div class="mb-3">
                             <textarea class="form-control" id="add-content" placeholder="留言" maxlength="200"></textarea>
@@ -75,21 +81,18 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">取消</button>
-                        <input type='button' value='傳書' class="btn btn-dark" data-bs-dismiss="modal">
+                        <input type='button' value='確定' class="btn btn-dark" data-bs-dismiss="modal">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container text-center">
-        <div id="allComments"></div>
-    </div>
-    <div class="container py-5 text-center">
+    <div class="container py-4 text-center">
         <button onclick="topFunction()" id="myBtn" class="btn btn-dark">Top</button>
     </div>
+    <!-- Close Comment -->
 
-    <!-- Close Comment Section-->
           
     <!-- Bootstrap -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
