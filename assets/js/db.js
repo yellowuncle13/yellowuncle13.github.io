@@ -22,36 +22,29 @@ var get_start = (function () {
         var check = true,
             name = $('#add-name').val(),
             content = $('#add-content').val();
-        if (name == "yellowuncle" || name == "小黃叔") {
-            var value = prompt("請輸入密碼：");
-            db.ref(`/accounts/${name}`).on('value', function (snapshot) {
-                var password = snapshot.val();
-                if (value == password) {
-                    db.ref(`/comments/${chaptNum}`).push({
-                        name : name,
-                        content: content,
-                        status: "",
-                        upvote: 0,
-                        downvote: 0,
-                        time: _DateTimezone(8)
-                    });
-                }
-                else {
-                    alert(`不是${name}嗎？`)
-                }
-            });
-        }
-        else if (name != "" && content != "") {
-            db.ref(`/comments/${chaptNum}`).push({
-                name : name,
-                content: content,
-                status: "",
-                upvote: 0,
-                downvote: 0,
-                time: _DateTimezone(8)
-            });
-        }
-        $('#myForm')[0].reset();
+            if (name != "" && content != "") {
+                db.ref(`/accounts/${name}`).on('value', function (snapshot) {
+                    var password = snapshot.val();
+                    if (password != null) {
+                        var value = prompt("請輸入密碼：");
+                        if (value != password) {
+                            check = false;
+                            alert(`不是${name}嗎？\n或是這個道號已經被綁定囉，換一個吧！`)
+                        }
+                    }
+                    if (check == true) {
+                        db.ref(`/comments/${chaptNum}`).push({
+                            name : name,
+                            content: content,
+                            status: "",
+                            upvote: 0,
+                            downvote: 0,
+                            time: _DateTimezone(8)
+                        });
+                    }
+                });
+            }
+            $('#myForm')[0].reset();
     });
 
 
@@ -102,6 +95,7 @@ var get_start = (function () {
                 </div>
 
                 `;
+            style = ""
         }
         str += `</div>`
         allComments.innerHTML = str;
