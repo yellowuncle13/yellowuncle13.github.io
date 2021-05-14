@@ -23,8 +23,8 @@ var get_start = (function () {
             name = $('#add-name').val(),
             content = $('#add-content').val();
         if (name == "yellowuncle" || name == "小黃叔") {
-            var value = prompt("你是小黃叔嗎?");
-            db.ref(`/myAccount`).on('value', function (snapshot) {
+            var value = prompt("請輸入密碼：");
+            db.ref(`/accounts/${name}`).on('value', function (snapshot) {
                 var password = snapshot.val();
                 if (value == password) {
                     db.ref(`/comments/${chaptNum}`).push({
@@ -37,7 +37,7 @@ var get_start = (function () {
                     });
                 }
                 else {
-                    alert("換個名字吧。")
+                    alert(`不是${name}嗎？`)
                 }
             });
         }
