@@ -29,7 +29,7 @@ var get_start = (function () {
                         var value = prompt("請輸入密碼：");
                         if (value != password) {
                             check = false;
-                            alert(`不是${name}嗎？\n或是這個道號已經被綁定囉，換一個吧！`)
+                            alert(`不是${name}嗎？\n或是這個道號已經被綁定囉，換一個吧！`);
                         }
                     }
                     if (check == true) {
@@ -37,6 +37,7 @@ var get_start = (function () {
                             name : name,
                             content: content,
                             status: "",
+                            type: "",
                             upvote: 0,
                             downvote: 0,
                             time: _DateTimezone(8)
