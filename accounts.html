@@ -62,20 +62,45 @@
             </div>
         </div>
     </div>
+
     <div class="container text-center">
-        <form  id="applyForm">
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">道號</label>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn-lg btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            我要綁定
+        </button>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">我要綁定</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form  id="applyForm">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="道號" maxlength="15">
+                                <label for="floatingInput">道號</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="密碼" maxlength="15">
+                                <label for="floatingPassword">密碼</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">取消</button>
+                        <input type='button' value='確定' class="btn btn-dark" data-bs-dismiss="modal">
+                    </div>
+                </div>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">密碼</label>
-            </div>
-        </form>
+        </div>
     </div>
-    <div class="container py-3 text-center">
-        <input type='button' class="btn btn-outline-primary" value='綁定'>
+
+    <div class="container py-4 text-center">
+        <span class="badge bg-primary rounded-pill"><div id="cmtCnt">0</div></span><p></p>
+        <div id="allComments"></div>
     </div>
 
           
@@ -89,6 +114,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
 
     <script src="assets/js/account.js"></script>
+    <script>
+        $(document).ready(function () {
+            get_start.init();
+        });
+    </script>
 
 </body>
 
