@@ -30,7 +30,7 @@ var get_start = (function () {
             else {
                 db.ref(`/accounts/${name}/password`).set(addPsd);
                 db.ref(`/accounts/${name}/status`).set(0);
-                db.ref(`/accounts/${name}/road`).set("");
+                db.ref(`/accounts/${name}/road`).set("未入道");
                 alert(`${name}綁定成功，別忘記密碼囉！`);
             }
         }
