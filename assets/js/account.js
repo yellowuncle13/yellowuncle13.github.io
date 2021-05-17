@@ -28,7 +28,9 @@ var get_start = (function () {
                 alert(`${name}已經被綁定囉，換一個吧！`);
             }
             else {
-                db.ref(`/accounts/${name}`).set(addPsd);
+                db.ref(`/accounts/${name}/password`).set(addPsd);
+                db.ref(`/accounts/${name}/status`).set(0);
+                db.ref(`/accounts/${name}/road`).set("未入道");
                 alert(`${name}綁定成功，別忘記密碼囉！`);
             }
         }
@@ -46,7 +48,6 @@ var get_start = (function () {
             });
             
             if (accounts) {
-                console.log(accounts);
                 _createPageStr(accounts.length, accounts);
             }
         });

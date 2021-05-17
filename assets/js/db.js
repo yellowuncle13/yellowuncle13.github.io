@@ -22,7 +22,7 @@ var get_start = (function () {
         var name = $('#add-name').val(),
             content = $('#add-content').val();
             if (name != "" && content != "") {
-                db.ref(`/accounts/${name}`).on('value', function (snapshot) {
+                db.ref(`/accounts/${name}/password`).on('value', function (snapshot) {
                     if (snapshot.exists()){
                         var value = prompt("請輸入密碼：");
                         if (value != snapshot.val()) {
