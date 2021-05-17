@@ -13,38 +13,24 @@ var get_start = (function () {
     var db = firebase.database();
 
     // Click button update db
-    $('input:button').off().click(function(){
-        var check = true,
-        name = $('#floatingInput').val(),
-        addPsd = $('#floatingPassword').val();
+    $('input:button').click(function(){
+        var name = $('#floatingInput').val(),
+            addPsd = $('#floatingPassword').val();
         if (name != "" && addPsd != "") {
-            db.ref(`/accounts/${name}`).on('value', function (snapshot) {
-                if (snapshot.exists()){
-                    alert(`${name}已經被綁定囉，換一個吧！`);
-                    console.log("1");
-                }
-                else {
-                    db.ref(`/accounts/${name}`).set(addPsd);
-                    alert(`${name}綁定成功，別忘記密碼囉！`);
-                    console.log("2");
-                }
+            var accounts = [];
+            db.ref(`/accounts`).on('value', function (snapshot) {
+                snapshot.forEach(child => {
+                    accounts.push(child.key);
+                });
             });
-
-            // db.ref(`/accounts/${name}`).on('value', function (snapshot) {
-            //     var password = snapshot.val();
-            //     console.log(password);
-            //     console.log(password == null);
-
-
-            //     if (password != null) {
-            //         check = false;
-            //         alert(`${name}已經被綁定囉，換一個吧！`);
-            //     }
-            //     else if (check == true) {
-            //         db.ref(`/accounts/${name}`).set(addPsd);
-            //         alert(`${name}綁定成功，別忘記密碼囉！`);
-            //     }
-            // });
+            var check = accounts.includes(`${name}`);
+            if (check){
+                alert(`${name}已經被綁定囉，換一個吧！`);
+            }
+            else {
+                db.ref(`/accounts/${name}`).set(addPsd);
+                alert(`${name}綁定成功，別忘記密碼囉！`);
+            }
         }
         $('#applyForm')[0].reset();
     });
@@ -53,14 +39,15 @@ var get_start = (function () {
 
     // get and display data
     function _getData() {
-        var names = [];
         db.ref(`/accounts`).on('value', function (snapshot) {
+            var accounts = [];
             snapshot.forEach(child => {
-                names.push(child.key);
-              });
+                accounts.push(child.key);
+            });
             
-            if (names) {
-                _createPageStr(names.length, names);
+            if (accounts) {
+                console.log(accounts);
+                _createPageStr(accounts.length, accounts);
             }
         });
     }
