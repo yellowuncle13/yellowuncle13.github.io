@@ -62,7 +62,6 @@ var get_start = (function () {
         for (let i = 0; i < len; i++) {
             str += `
                 <li class="list-group-item">${names[i]}</li>
-                
                 `;
         }
         str += `</ul></div>`
