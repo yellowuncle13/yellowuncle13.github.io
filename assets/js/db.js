@@ -90,7 +90,6 @@ var get_start = (function () {
                         <p class="card-text fs-6 fw-bold">${contents[i]}</p>
                     </div>
                 </div>
-
                 `;
             style = ""
         }
