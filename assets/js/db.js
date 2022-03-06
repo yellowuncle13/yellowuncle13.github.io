@@ -76,7 +76,7 @@ var get_start = (function () {
         var str = `<div class="container" style="text-align: left;">`;
         var i = 0;
         var style = "";
-        for (i = 0; i < len; i++) {
+        for (i = len-1; i >= 0; i--) {
             if (`${names[i]}` == `yellowuncle` || `${names[i]}` == `小黃叔`) {
                 style = `badge bg-dark text-wrap`;
             }
@@ -95,8 +95,8 @@ var get_start = (function () {
         }
         str += `</div>`
         allComments.innerHTML = str;
-        db.ref(`/cmtCnt/${chaptNum}`).set(i);
-        cmtCnt.innerHTML = i;
+        db.ref(`/cmtCnt/${chaptNum}`).set(len);
+        cmtCnt.innerHTML = len;
     }
 
     // time
