@@ -61,15 +61,16 @@ var get_start = (function () {
             `
                 <div class="second_topic">第${i+1}章</div>
                 <br>
-                <div class="content">
+                <div class="content" id="${i+1}">
                     ${contents[i]}
                 </div>
 
                 <hr class="dropdown-divider">
                 <div class="navbar align-self-center d-flex">
                     <a class="nav-link" href="index.html"><i class='bx bx-home bx-sm bx-tada-hover text-primary'></i></a>
-                    <a class="nav-link" href="#"><i class='bx bxs-chevrons-up bx-sm bx-tada-hover text-primary'></i></a>
+                    <a class="nav-link" href="#${i+1}"><i class='bx bxs-chevrons-up bx-sm bx-tada-hover text-primary'></i></a>
                     <a class="nav-link" href="#"><i class='bx bx-chat bx-sm bx-tada-hover text-primary'></i></a>
+                    <span class="badge bg-primary rounded-pill"><div id="cmtCnt">0</div></span>
                 </div>
                 <hr class="dropdown-divider"> 
             `;
