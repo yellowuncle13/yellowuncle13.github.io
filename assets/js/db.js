@@ -26,11 +26,11 @@ var get_start = (function () {
                     if (snapshot.exists()){
                         var value = prompt("請輸入密碼：");
                         if (value != snapshot.val()) {
-                            alert(`不是${name}嗎？\n或是這個道號已經被綁定囉，換一個吧！`);
+                            alert(`不是${name}嗎？\n或是這個名稱已經被綁定囉，換一個吧！`);
                             return false;
                         }
                     }
-                    db.ref(`/comments/${chaptNum}`).push({
+                    db.ref(`/comments/overall/${chaptNum}`).push({
                         name : name,
                         content: content,
                         status: "",
@@ -48,7 +48,7 @@ var get_start = (function () {
 
     // get and display data
     function _getData() {
-        db.ref(`/comments/${chaptNum}`).on('value', function (snapshot) {
+        db.ref(`/comments/overall/${chaptNum}`).on('value', function (snapshot) {
             var data = snapshot.val();
             if (data) {
                 var names = [];

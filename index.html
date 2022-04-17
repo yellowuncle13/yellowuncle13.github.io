@@ -62,18 +62,7 @@
     </div>
 
     <!-- Newest Chapter -->
-    <div class="container py-3">
-        <div class="row projects gx-lg-5">
-            <a href="novel.html" class="col-sm-6 col-lg-3 text-decoration-none project marketing social business text-left">
-                <div class="overflow-hidden card mb-5 mx-5 m-sm-0">
-                    <div class="card-body">
-                        <h5 class="card-title text-dark">最新章節</h5>
-                        <p class="card-text text-dark">第1章</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+    <div id="latestChapt"></div>
 
     <div class="container py-5 text-center">
     </div>
@@ -82,6 +71,19 @@
 
     <!-- Bootstrap -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- FireBase -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-database.js"></script>
+
+    <script src="assets/js/novel.js"></script>
+    <script>
+        $(document).ready(function () {
+            get_latest_chapt.init();
+        });
+    </script>
 
 </body>
 
