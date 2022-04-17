@@ -213,10 +213,10 @@ var get_latest_chapt = (function () {
     function _getData()
     {
         var latestChapt = 0;
-        db.ref(`/comments/chapters`).once('value').then((snapshot) => {
+        db.ref(`/novel`).once('value').then((snapshot) => {
             var data = snapshot.val();
             if (data) {
-                latestChapt = data.length;
+                latestChapt = data.length - 1;
                 document.getElementById("latestChapt").innerHTML = 
                     `
                     <div class="container py-3">
