@@ -11,10 +11,10 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.database();
 
-
 function emptyForm()
 {
     $('#updateNovelForm')[0].reset();
+    document.getElementById("loadNovel").textContent = ``;
 }
 
 function updateNovel()
@@ -24,21 +24,55 @@ function updateNovel()
     if (chaptNum != "" && chaptNum != null && chaptContent != "" && chaptContent != null)
     {
         db.ref(`/accounts/yellowuncle/password`).once('value').then((snapshot) => {
-            if (snapshot.exists()){
+            if (snapshot.exists())
+            {
                 var value = prompt("請輸入密碼：");
                 if (value != snapshot.val()) {
                     alert(`不是小黃叔嗎？\n這裡是用來更新小說的哦！`);
                     return false;
                 }
+                db.ref(`/novel/${chaptNum}`).set({
+                    content: chaptContent,
+                    time: _DateTimezone(8)
+                });
+                alert(`上傳第${chaptNum}章成功！ (${_DateTimezone(8)})`);
             }
-            db.ref(`/novel/${chaptNum}`).set({
-                content: chaptContent,
-                time: _DateTimezone(8)
-            });
-            alert(`上傳第${chaptNum}章成功！ (${_DateTimezone(8)})`);
         });
 
-        $('#updateNovelForm')[0].reset();
+        emptyForm();
+    }
+}
+
+function downloadNovel()
+{
+    var contents = [];
+    var chaptNum = $("#add-chapt-num").val();
+    if (chaptNum != "" && chaptNum != null)
+    {
+        db.ref(`/novel/${chaptNum}`).once('value').then((snapshot) => {
+            if (snapshot.exists())
+            {
+                var data = snapshot.val().content;
+
+                if(!data.includes("\n"))
+                {
+                    data = data.replace(/  /g, "\n\n");
+                }
+
+                navigator.clipboard.writeText(data);
+
+                if(data.includes("\n"))
+                {
+                    contents.push(data.split("\n").join("<br>"));
+                }
+                else
+                {
+                    contents.push(data.split(" ").join("<br>"));
+                }
+                document.getElementById("loadNovel").innerHTML = contents;
+            }
+        });
+
     }
 }
 
