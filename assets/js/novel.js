@@ -23,7 +23,14 @@ var get_start_chapt = (function () {
                 var len = 0;
 
                 for (let key in data) {
-                    contents.push(data[key].content.split(" ").join("<br>"));
+                    if(data[key].content.includes("\n"))
+                    {
+                        contents.push(data[key].content.split("\n").join("<br><br>"));
+                    }
+                    else
+                    {
+                        contents.push(data[key].content.split(" ").join("<br>"));
+                    }
                     times.push(data[key].time);
                     len ++;
                 }
@@ -224,8 +231,8 @@ var get_latest_chapt = (function () {
                             <a href="novel.html#2" class="col-sm-6 col-lg-3 text-decoration-none project marketing social business text-left">
                                 <div class="overflow-hidden card mb-5 mx-5 m-sm-0">
                                     <div class="card-body">
-                                        <h5 class="card-title text-dark">最新章節</h5>
-                                        <p class="card-text text-dark">第${latestChapt}章</p>
+                                        <h4 class="card-title text-dark">最新章節 第${latestChapt}章</h4>
+                                        <p class="card-text text-dark">${data[latestChapt].time}</p>
                                     </div>
                                 </div>
                             </a>

@@ -1,54 +1,26 @@
+// Initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyBQr6zrt6rQoN1qYSm3uzfuJg_bITUy2ko",
+    authDomain: "yellowuncle13-f1772.firebaseapp.com",
+    databaseURL: "https://yellowuncle13-f1772-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "yellowuncle13-f1772",
+    storageBucket: "yellowuncle13-f1772.appspot.com",
+    messagingSenderId: "767025604235",
+    appId: "1:767025604235:web:6cf57f56273bdb91c7568e"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.database();
+
+var allComments = document.querySelector("#allComments");
+var path = window.location.pathname;
+var file = path.split("/").pop();
+var chaptNum = file.split(".").shift();
+
 var get_start = (function () {
-    var allComments = document.querySelector("#allComments");
-    var path = window.location.pathname;
-    var file = path.split("/").pop();
-    var chaptNum = file.split(".").shift();
-
-    // Initialize Firebase
-    var firebaseConfig = {
-        apiKey: "AIzaSyBQr6zrt6rQoN1qYSm3uzfuJg_bITUy2ko",
-        authDomain: "yellowuncle13-f1772.firebaseapp.com",
-        databaseURL: "https://yellowuncle13-f1772-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "yellowuncle13-f1772",
-        storageBucket: "yellowuncle13-f1772.appspot.com",
-        messagingSenderId: "767025604235",
-        appId: "1:767025604235:web:6cf57f56273bdb91c7568e"
-    };
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.database();
-
-    // Click button update db
-    $('input:button').click(function(){
-        var name = $('#add-name').val(),
-            content = $('#add-content').val();
-            if (name != "" && content != "") {
-                db.ref(`/accounts/${name}/password`).on('value', function (snapshot) {
-                    if (snapshot.exists()){
-                        var value = prompt("請輸入密碼：");
-                        if (value != snapshot.val()) {
-                            alert(`不是${name}嗎？\n或是這個名稱已經被綁定囉，換一個吧！`);
-                            return false;
-                        }
-                    }
-                    db.ref(`/comments/overall/${chaptNum}`).push({
-                        name : name,
-                        content: content,
-                        status: "",
-                        type: "",
-                        upvote: 0,
-                        downvote: 0,
-                        time: _DateTimezone(8)
-                    });
-                });
-            }
-        $('#myForm')[0].reset();
-    });
-
-
-
+    
     // get and display data
     function _getData() {
-        db.ref(`/comments/overall/${chaptNum}`).on('value', function (snapshot) {
+        db.ref(`/comments/overall/${chaptNum}`).once('value').then((snapshot) => {
             var data = snapshot.val();
             if (data) {
                 var names = [];
@@ -99,13 +71,6 @@ var get_start = (function () {
         cmtCnt.innerHTML = len;
     }
 
-    // time
-    function _DateTimezone(offset) {
-        d = new Date();
-        utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-        return new Date(utc + (3600000 * offset)).toLocaleString();
-    }
-
     function init() {
         _getData();
     }
@@ -115,3 +80,39 @@ var get_start = (function () {
     }
 
 })();
+
+// Click button update db
+function addComment()
+{
+    var name = $('#add-name').val(),
+        content = $('#add-content').val();
+        if (name != "" && content != "") {
+            db.ref(`/accounts/${name}/password`).once('value').then((snapshot) => {
+                if (snapshot.exists()){
+                    var value = prompt("請輸入密碼：");
+                    if (value != snapshot.val()) {
+                        alert(`不是${name}嗎？\n或是這個名稱已經被綁定囉，換一個吧！`);
+                        return false;
+                    }
+                }
+                db.ref(`/comments/overall/${chaptNum}`).push({
+                    name : name,
+                    content: content,
+                    status: "",
+                    type: "",
+                    upvote: 0,
+                    downvote: 0,
+                    time: _DateTimezone(8)
+                });
+            });
+        }
+    $('#myForm')[0].reset();
+    get_start.init();
+};
+
+// time
+function _DateTimezone(offset) {
+    d = new Date();
+    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    return new Date(utc + (3600000 * offset)).toLocaleString();
+}
