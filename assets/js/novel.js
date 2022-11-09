@@ -25,7 +25,7 @@ var get_start_chapt = (function () {
                 for (let key in data) {
                     if(data[key].content.includes("\n"))
                     {
-                        contents.push(data[key].content.split("\n").join("<br>"));
+                        contents.push(data[key].content.split("\n").join("<br><br>"));
                     }
                     else
                     {
